@@ -10,6 +10,13 @@ This browser extension automatically fills faculty evaluation forms for all teac
 
 ---
 
+## Quick Install (Userscript)
+
+- Visit the Install page: https://cainebenoy.github.io/linways-autofill-extension/
+- Click the big “Install Userscript” button (requires Tampermonkey)
+
+---
+
 ## Installation Instructions
 
 ### 🟦 **Google Chrome / Microsoft Edge / Brave / Opera**
@@ -130,6 +137,24 @@ Safari requires extensions to be converted to Safari Web Extension format:
    - Wait for the completion alert
    - You'll see how many teachers were processed
    - All done! 🎉
+
+---
+
+## Demo GIFs
+
+> Replace the placeholders below with your own recordings (add files under `docs/gifs/`).
+
+- Teacher list → Auto-run (Excellent):
+
+   ![Auto Excellent](docs/gifs/auto-excellent.gif)
+
+- Auto-run (Very Good):
+
+   ![Auto Very Good](docs/gifs/auto-verygood.gif)
+
+- Auto-run (Random):
+
+   ![Auto Random](docs/gifs/auto-random.gif)
 
 ---
 
