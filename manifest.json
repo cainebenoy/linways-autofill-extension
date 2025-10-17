@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Linways Faculty Evaluation Autofill",
+  "version": "1.0.0",
+  "description": "Automatically fill Linways faculty evaluation forms for all teachers.",
+  "permissions": ["activeTab", "scripting"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Linways Autofill"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.linways.com/*"],
+      "js": ["content.js"]
+    }
+  ]
+}
