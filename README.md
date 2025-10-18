@@ -138,6 +138,14 @@ Safari requires extensions to be converted to Safari Web Extension format:
    - You'll see how many teachers were processed
    - All done! 🎉
 
+### Where is the button (Userscript)?
+
+- On Linways pages, a small floating panel titled "Linways Autofill" appears at the bottom‑right.
+- If you don't see it:
+   - Press Alt+L to show/hide the panel
+   - Or open the Tampermonkey menu and click "Toggle Panel (Alt+L)"
+   - Refresh the page and ensure the userscript is enabled
+
 ---
 
 ## Demo GIFs

@@ -5,7 +5,7 @@
 // @description  Auto-fill Linways faculty evaluation forms (all teachers) with Excellent, Very Good or Random (4-5).
 // @match        *://*.linways.com/*
 // @run-at       document-idle
-// @grant        none
+// @grant        GM_registerMenuCommand
 // ==/UserScript==
 
 (function() {
@@ -42,6 +42,14 @@
 
     panel.append(title, hint, btnExcellent, btnVeryGood, btnRandom);
     document.body.appendChild(panel);
+  }
+
+  function togglePanel() {
+    let panel = document.getElementById('linways-autofill-panel');
+    if (!panel) { createPanel(); panel = document.getElementById('linways-autofill-panel'); }
+    if (!panel) return;
+    const isHidden = panel.style.display === 'none';
+    panel.style.display = isHidden ? 'block' : 'none';
   }
 
   function makeBtn(label, color) {
@@ -183,7 +191,27 @@
   function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
   // Initialize panel when DOM is ready
-  const ready = () => createPanel();
+  const ready = () => {
+    createPanel();
+    // Safety: re-try a few times in case of SPA navigation or late DOM paint
+    let tries = 0;
+    const id = setInterval(() => {
+      if (document.getElementById('linways-autofill-panel')) { clearInterval(id); return; }
+      createPanel();
+      if (++tries > 10) clearInterval(id);
+    }, 500);
+
+    // Shortcut: Alt+L to toggle panel
+    window.addEventListener('keydown', (e) => {
+      if (e.altKey && (e.key === 'l' || e.key === 'L')) {
+        e.preventDefault();
+        togglePanel();
+      }
+    }, { passive: false });
+
+    // Tampermonkey menu command
+    try { if (typeof GM_registerMenuCommand === 'function') GM_registerMenuCommand('Toggle Panel (Alt+L)', togglePanel); } catch {}
+  };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', ready);
   else ready();
 })();
